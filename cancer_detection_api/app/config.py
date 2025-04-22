@@ -12,11 +12,11 @@ UPLOAD_DIR = os.path.join(BASE_DIR, "static", "uploads")
 
 # Cấu hình Database
 DATABASE_URL = os.environ.get(
-    "DATABASE_URL"
+    "DB_URL"
 )
 
 # Cấu hình JWT
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "skdjafuuify3iwh3fhueiwnjfb3yui2ey7yuik23iue7")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 365 * 10
 
