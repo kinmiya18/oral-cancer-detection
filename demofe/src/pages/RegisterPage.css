@@ -1,0 +1,29 @@
+/* Định nghĩa biến màu sắc và khoảng cách */
+:root {
+    --primary-bg: #f9fafb;
+    /* Màu nền xám nhạt */
+    --container-width: 28rem;
+    /* 448px */
+    --border-radius: 0.5rem;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Định dạng toàn bộ trang đăng ký */
+.register-page-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-bg);
+    padding: 3rem 1rem;
+}
+
+/* Hộp chứa form đăng ký */
+.register-box {
+    max-width: var(--container-width);
+    width: 100%;
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}

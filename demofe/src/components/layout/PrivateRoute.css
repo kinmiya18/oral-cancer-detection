@@ -1,0 +1,27 @@
+/* PrivateRoute.css */
+.loading-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-spinner {
+    animation: spin 1s linear infinite;
+    border-top: 2px solid #6366f1;
+    /* Indigo-500 */
+    border-bottom: 2px solid #6366f1;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

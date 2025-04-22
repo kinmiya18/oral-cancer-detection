@@ -1,0 +1,160 @@
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-main {
+    flex-grow: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 1.25rem 1rem;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1f2937;
+    /* text-gray-900 */
+}
+
+.page-subtext {
+    margin-top: 0.25rem;
+    max-width: 600px;
+    font-size: 0.875rem;
+    color: #6b7280;
+    /* text-gray-500 */
+}
+
+.alert-error {
+    background-color: #fef2f2;
+    border: 1px solid #f87171;
+    color: #b91c1c;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+}
+
+.details-section {
+    border-top: 1px solid #e5e7eb;
+}
+
+.detail-row {
+    padding: 1.25rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.detail-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.detail-value {
+    font-size: 0.875rem;
+    color: #111827;
+    grid-column: span 2;
+}
+
+.badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.badge.admin {
+    background-color: #ede9fe;
+    color: #6b21a8;
+}
+
+.badge.user {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.grid-cards {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 640px) {
+    .grid-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.card-inner {
+    padding: 1.25rem;
+}
+
+.card-heading {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.card-desc {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    max-width: 36rem;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    color: #fff;
+    background-color: #4f46e5;
+    border: none;
+    margin-top: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+}
+
+.loading-spinner {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    border-top: 2px solid #6366f1;
+    border-bottom: 2px solid #6366f1;
+    border-radius: 9999px;
+    height: 3rem;
+    width: 3rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

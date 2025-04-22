@@ -1,0 +1,21 @@
+/* Định dạng toàn bộ trang đăng nhập */
+.login-page-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9fafb;
+    /* gray-50 */
+    padding: 3rem 1rem;
+}
+
+/* Hộp chứa form đăng nhập */
+.login-box {
+    max-width: 28rem;
+    /* 448px */
+    width: 100%;
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

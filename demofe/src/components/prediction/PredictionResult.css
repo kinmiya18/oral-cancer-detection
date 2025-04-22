@@ -1,0 +1,116 @@
+.prediction-container {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.prediction-header {
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.prediction-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #111827;
+}
+
+.prediction-date {
+    margin-top: 0.25rem;
+    max-width: 42rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.prediction-section {
+    border-top: 1px solid #e5e7eb;
+}
+
+.prediction-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1.25rem 1rem;
+}
+
+.row-alt {
+    background-color: #f9fafb;
+}
+
+.prediction-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.prediction-value {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #111827;
+    grid-column: span 2 / span 2;
+}
+
+.result-positive {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    font-weight: bold;
+}
+
+.result-negative {
+    background-color: #ecfdf5;
+    color: #065f46;
+    font-weight: bold;
+}
+
+.progress-bar-container {
+    background-color: #e5e7eb;
+    height: 0.625rem;
+    border-radius: 9999px;
+    width: 100%;
+}
+
+.progress-bar-fill-positive {
+    background-color: #dc2626;
+    height: 0.625rem;
+    border-radius: 9999px;
+}
+
+.progress-bar-fill-negative {
+    background-color: #16a34a;
+    height: 0.625rem;
+    border-radius: 9999px;
+}
+
+.recommendation-positive {
+    color: #b91c1c;
+    font-weight: 600;
+}
+
+.recommendation-negative {
+    color: #065f46;
+    font-weight: 600;
+}
+
+.prediction-footer {
+    padding: 0.75rem 1rem;
+    background-color: #f9fafb;
+    text-align: right;
+}
+
+.reset-button {
+    display: inline-flex;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    background-color: #4f46e5;
+    color: white;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background-color: #4338ca;
+}
