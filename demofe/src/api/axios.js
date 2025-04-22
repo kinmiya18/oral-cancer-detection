@@ -1,19 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 
 // Tạo instance axios với URL cơ sở
-const API_URL = 'http://localhost:8000'; // Thay đổi URL tùy theo cấu hình backend
+const API_URL = process.env.REACT_APP_API_URL; // Thay đổi URL tùy theo cấu hình backend
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
 // Interceptor để thêm token vào header
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -30,9 +30,9 @@ axiosInstance.interceptors.response.use(
   (error) => {
     // Xử lý lỗi 401 Unauthorized - đăng xuất nếu token hết hạn
     if (error.response && error.response.status === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.location.href = '/login';
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/login";
     }
     return Promise.reject(error);
   }
