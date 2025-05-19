@@ -87,6 +87,11 @@ const PredictionHistory = () => {
                     <img
                       src={`${process.env.REACT_APP_API_URL}/static/${prediction.image_path}`}
                       alt="Prediction"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
                       className="h-full w-full object-cover"
                     />
                   </div>
