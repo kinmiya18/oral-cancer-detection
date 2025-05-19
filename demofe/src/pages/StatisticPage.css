@@ -1,0 +1,81 @@
+.statistic-container {
+    padding: 20px;
+}
+
+.statistic-title {
+    margin-top: 2rem; /* hoặc 3rem nếu muốn xa hơn */
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.statistic-overview {
+    margin-top: 1rem;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.card {
+    background: #f1f5f9;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.statistic-chart {
+    max-width: 400px;
+    margin-bottom: 32px;
+}
+
+.recent-predictions table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-predictions th, .recent-predictions td {
+    border: 1px solid #cbd5e1;
+    padding: 8px;
+}
+.statistic-section {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.statistic-chart, .recent-predictions {
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 300px;
+}
+
+.statistic-chart h2, .recent-predictions h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #111827;
+}
+
+.recent-predictions table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.recent-predictions th,
+.recent-predictions td {
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.recent-predictions th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+}
+
+.recent-predictions tr:nth-child(even) {
+    background-color: #f9fafb;
+}

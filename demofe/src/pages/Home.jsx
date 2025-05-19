@@ -49,7 +49,6 @@ const Home = () => {
       <Link to={isAuthenticated ? "/prediction" : "/register"} className="cta-button primary">
         {isAuthenticated ? 'Phân tích ảnh ngay' : 'Đăng ký ngay'}
       </Link>
-      <a href="#about" className="cta-button secondary">Tìm hiểu thêm</a>
     </div>
   </div>
 </div>

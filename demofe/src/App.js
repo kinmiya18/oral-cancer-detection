@@ -11,6 +11,7 @@ import DashboardPage from './pages/DashboardPage';
 import PredictionPage from './pages/PredictionPage';
 import HistoryPage from './pages/HistoryPage';
 import AdminPage from './pages/AdminPage';
+import StatisticPage from "./pages/StatisticPage";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           {/* Admin routes */}
           <Route element={<PrivateRoute requireAdmin={true} />}>
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/statistic" element={<StatisticPage />} />
           </Route>
           
           {/* Redirect for unknown routes */}

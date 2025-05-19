@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { getAllUsers } from '../../api/predictionService';
-import './UserManagement.css'; // Import CSS mới
+import './UserManagement.css';
+
+const ITEMS_PER_PAGE = 5;
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -22,11 +25,21 @@ const UserManagement = () => {
     fetchUsers();
   }, []);
 
+  const totalPages = Math.ceil(users.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentUsers = users.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const goToPage = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
   if (loading) {
     return (
-      <div className="loader">
-        <div></div>
-      </div>
+        <div className="loader">
+          <div></div>
+        </div>
     );
   }
 
@@ -35,14 +48,14 @@ const UserManagement = () => {
   }
 
   return (
-    <div className="user-container">
-      <div className="user-header">
-        <h3 className="user-title">Quản lý người dùng</h3>
-        <p className="user-subtitle">Danh sách tất cả người dùng trong hệ thống</p>
-      </div>
-      <div className="overflow-x-auto">
-        <table className="user-table">
-          <thead>
+      <div className="user-container">
+        <div className="user-header">
+          <h3 className="user-title">Quản lý người dùng</h3>
+          <p className="user-subtitle">Danh sách tất cả người dùng trong hệ thống</p>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="user-table">
+            <thead>
             <tr>
               <th>ID</th>
               <th>Tên đăng nhập</th>
@@ -52,31 +65,51 @@ const UserManagement = () => {
               <th>Quyền</th>
               <th>Ngày tạo</th>
             </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.username}</td>
-                <td>{user.full_name || '-'}</td>
-                <td>{user.email}</td>
-                <td>
+            </thead>
+            <tbody>
+            {currentUsers.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>{user.username}</td>
+                  <td>{user.full_name || '-'}</td>
+                  <td>{user.email}</td>
+                  <td>
                   <span className={`badge ${user.is_active ? 'badge-active' : 'badge-inactive'}`}>
                     {user.is_active ? 'Hoạt động' : 'Bị khóa'}
                   </span>
-                </td>
-                <td>
+                  </td>
+                  <td>
                   <span className={`badge ${user.is_admin ? 'badge-admin' : 'badge-user'}`}>
                     {user.is_admin ? 'Admin' : 'Người dùng'}
                   </span>
-                </td>
-                <td>{new Date(user.created_at).toLocaleString('vi-VN')}</td>
-              </tr>
+                  </td>
+                  <td>{new Date(user.created_at).toLocaleString('vi-VN')}</td>
+                </tr>
             ))}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
+
+        {totalPages > 1 && (
+            <div className="pagination-controls">
+              <button onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+                &#8592;
+              </button>
+              {[...Array(totalPages)].map((_, idx) => (
+                  <button
+                      key={idx}
+                      className={currentPage === idx + 1 ? 'active' : ''}
+                      onClick={() => goToPage(idx + 1)}
+                  >
+                    {idx + 1}
+                  </button>
+              ))}
+              <button onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}>
+                &#8594;
+              </button>
+            </div>
+        )}
       </div>
-    </div>
   );
 };
 

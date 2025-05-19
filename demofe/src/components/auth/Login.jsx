@@ -1,10 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../api/authService';
 import { useAuth } from '../../context/AuthContext';
-import './Login.css'; // Import CSS mới
+import './Login.css';
 
 const Login = () => {
+  // Thêm useEffect để xử lý CSS toàn trang khi component mount
+  useEffect(() => {
+    // Ẩn header và footer nếu cần
+    const appHeader = document.querySelector('header');
+    const appFooter = document.querySelector('footer');
+
+    if (appHeader) appHeader.style.display = 'none';
+    if (appFooter) appFooter.style.display = 'none';
+
+    // Đảm bảo body và html chiếm toàn màn hình
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    // Cleanup khi component unmount
+    return () => {
+      if (appHeader) appHeader.style.display = '';
+      if (appFooter) appFooter.style.display = '';
+      document.body.style.margin = '';
+      document.body.style.padding = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, []);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -30,62 +56,75 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-wrapper">
-        <h2 className="login-title">Đăng nhập</h2>
+      <div className="login-container">
+        {/* Left side - Background image */}
+        <div className="login-image-container">
+          <div className="login-image"></div>
+        </div>
 
-        {error && <div className="login-alert">{error}</div>}
+        {/* Right side - Login form */}
+        <div className="login-form-container">
+          <div className="login-form-wrapper">
+            <h1 className="login-title">Đăng nhập</h1>
 
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="username">Tên đăng nhập</label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              required
-              className="input-field"
-              placeholder="Tên đăng nhập"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            {error && <div className="login-alert">{error}</div>}
+
+            <form onSubmit={handleSubmit} className="login-form">
+              <div className="input-group">
+                <label htmlFor="username">Email</label>
+                <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    required
+                    className="input-field"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+
+              <div className="input-group">
+                <label htmlFor="password">Mật khẩu</label>
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    className="input-field"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+
+              <button type="submit" disabled={loading} className="login-button">
+                {loading ? 'Đang xử lý...' : 'Đăng nhập'}
+              </button>
+
+              <button
+                  type="button"
+                  className="register-button"
+                  onClick={() => navigate('/register')}
+              >
+                Đăng ký
+              </button>
+
+              <div className="forgot-password-container">
+                <a
+                    href="/forgot-password"
+                    className="forgot-password-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate('/forgot-password');
+                    }}
+                >
+                  Quên mật khẩu?
+                </a>
+              </div>
+            </form>
           </div>
-
-          <div className="input-group">
-            <label htmlFor="password">Mật khẩu</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              required
-              className="input-field"
-              placeholder="Mật khẩu"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          <button type="submit" disabled={loading} className="login-button">
-            {loading ? 'Đang xử lý...' : 'Đăng nhập'}
-          </button>
-
-          <p className="register-text">
-            Chưa có tài khoản?{' '}
-            <a
-              href="/register"
-              className="register-link"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate('/register');
-              }}
-            >
-              Đăng ký ngay
-            </a>
-          </p>
-        </form>
+        </div>
       </div>
-    </div>
   );
 };
 
