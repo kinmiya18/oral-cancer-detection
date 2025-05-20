@@ -109,7 +109,7 @@ const StatisticPage = () => {
                         ? "Có dấu hiệu ung thư"
                         : "Không phát hiện dấu hiệu"}
                     </td>
-                    <td>{p.confidence.toFixed(2)}%</td>
+                    <td>{p.confidence.toFixed(2)}</td>
                     <td>{new Date(p.created_at).toLocaleString("vi-VN")}</td>
                   </tr>
                 ))}
