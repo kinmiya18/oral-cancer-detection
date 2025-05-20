@@ -1,5 +1,4 @@
 ﻿# oral-cancer-detection
-# Cancer Detection System
 
 ## Yêu cầu hệ thống
 
