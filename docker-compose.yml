@@ -1,16 +1,18 @@
+version: '3.8'
+
 services:
-  # frontend:
-  #   build:
-  #     context: ./demofe
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./frontend:/app
-  #     - /app/node_modules
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     - NODE_ENV=development
-  #   command: npm start
+  frontend:
+    build:
+      context: ./demofe
+      dockerfile: Dockerfile
+    volumes:
+      - ./demofe:/app          # đúng theo context FE
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./demofe/.env          # dùng file .env thay vì environment thủ công
+    command: npm start
 
   backend:
     restart: always
@@ -18,14 +20,15 @@ services:
       context: ./cancer_detection_api
       dockerfile: Dockerfile
     volumes:
-      - ./backend:/app
+      - ./cancer_detection_api:/app   # đúng context BE
     ports:
       - "8000:8000"
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/cancer_detection
-      - SECRET_KEY=skdjafuuify3iwh3fhueiwnjfb3yui2ey7yuik23iue7
+    env_file:
+      - ./cancer_detection_api/.env   # dùng .env thay vì hardcode
+    # nếu vẫn muốn override thêm:
+    
 
   db:
     image: postgres:17

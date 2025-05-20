@@ -7,6 +7,9 @@ import "./StatisticPage.css";
 import { Pie } from "react-chartjs-2";
 import "chart.js/auto";
 
+function roundTo(value, decimals) {
+  return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+}
 const StatisticPage = () => {
   const { isAdmin } = useAuth();
   const [predictions, setPredictions] = useState([]);
@@ -16,7 +19,7 @@ const StatisticPage = () => {
       try {
         const token = localStorage.getItem("token"); // hoặc từ context
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/admin/predictions`,
+          "https://oral-cancer-detection-vjbd.onrender.com/admin/predictions",
           {
             headers: {
               "Content-Type": "application/json",
@@ -99,20 +102,25 @@ const StatisticPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {predictions.slice(0, 10).map((p) => (
-                  <tr key={p.id}>
-                    <td>{p.id}</td>
-                    <td>{p.full_name}</td>
-                    <td>{p.username}</td>
-                    <td>
-                      {p.prediction_result
-                        ? "Có dấu hiệu ung thư"
-                        : "Không phát hiện dấu hiệu"}
-                    </td>
-                    <td>{p.confidence.toFixed(2)}</td>
-                    <td>{new Date(p.created_at).toLocaleString("vi-VN")}</td>
-                  </tr>
-                ))}
+                {[...predictions]
+                  .sort(
+                    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+                  )
+                  .slice(0, 10)
+                  .map((p) => (
+                    <tr key={p.id}>
+                      <td>{p.id}</td>
+                      <td>{p.full_name}</td>
+                      <td>{p.username}</td>
+                      <td>
+                        {p.prediction_result
+                          ? "Có dấu hiệu ung thư"
+                          : "Không phát hiện dấu hiệu"}
+                      </td>
+                      <td>{roundTo(p.confidence * 100, 2)}%</td>
+                      <td>{new Date(p.created_at).toLocaleString("vi-VN")}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
